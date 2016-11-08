@@ -5,14 +5,16 @@ var angularApp = angular.module('angularApp', []);
 angularApp.controller('mainController', ['$scope' ,'$filter','$log','$http','$timeout', function ($scope, $filter,$log,$http,$timeout) {
     
 	$scope.name= '';
+	$scope.loading = true;
 	$scope.sortType     = 'Location'; // set the default sort type
 	$scope.sortReverse  = false;  // set the default sort order
 	$scope.searchFish   = '';     // set the default search/filter term
 	
-	$http.get('/api/employer_list.json')
+	$http.get('api/employer_list.json')
 		.then (function mySuccess(response) {
 			$scope.myData = response.data.Root.EmployeeInfo;
 			$log.info(response);
+			$scope.loading = false;
 		}, function myError (status) {
 			$log.warn("Something went wrong");
 		});

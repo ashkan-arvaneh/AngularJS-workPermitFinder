@@ -1,7 +1,7 @@
   <!DOCTYPE html>
 <html lang="en-us" ng-app="angularApp">
     <head>
-        <title>Introduction to AngularJS</title>
+        <title>REGISTER OF SPONSORS (Tiers 2 & 5 and Sub Tiers Only)</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta charset="UTF-8">
 
@@ -23,31 +23,40 @@
         <header>
             <nav class="navbar navbar-default">
             <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">AngularJS</a>
+                <div class="navbar-header col-xs-8">
+                    <a class="navbar-brand" href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/565702/2016-11-07_Tier_2_5_Register_of_Sponsors.pdf" target="_blank">REGISTER OF SPONSORS (Tiers 2 & 5 and Sub Tiers Only)</a>
                 </div>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <ul class="nav navbar-nav navbar-right col-xs-4">
+                    <li><a href="http://www.ashkanarvaneh.co.uk" target="_blank"><i class="glyphicon glyphicon-home"></i> My personal portfolio</a></li>
                 </ul>
             </div>
             </nav>
         </header>
 
         <div class="container">
-            <div ng-controller="mainController">
+            <div class="row" ng-controller="mainController">
                 <!-- <label>What is your name?</label>
                 <input type="text" name="" ng-model="name">
                 <h1>Hello {{ filteredText()}}!</h1> -->
+                <div class="col-xs-1">
+                    <span class="label label-info">Info</span>
+                </div>
+                <div class="col-xs-11">
+                    <h4 style="margin: 0;line-height:1.5;">This is a list of organisations in the UK licensed to sponsor migrants under Tiers 2 &amp; 5 of the Points-Based System.<br><br/>The Home Office provides a list of licensed organisations that are eligible to sponsor non-EU workers. The list is huge and contains more than 30,000 records and is provided in pdf format which makes it very difficult to carry out any search. The aim of this app is to make it slightly easier for job seekers to filter employers by their locations and carry out google search on the companies.
+                    </h4>
+                </div>
+                <div class="col-xs-12" style="text-align: center;margin-bottom: 10px;">
+                    <span class="label label-success">Updated on:07-November-2016</span>
+                </div>
                 <form>
                     <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-addon"><i class="glyphicon glyphicon-search
-"></i></div>
-
-                        <input type="text" class="form-control" placeholder="Search by location" ng-model="searchLocation">
-
-                      </div>      
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search by location" ng-model="searchLocation">
+                        </div>      
                     </div>
                 </form>
                 <div class="panel panel-primary">
@@ -56,25 +65,30 @@
 
                     <!-- Table -->
                     <table class="table">
-                    <thead> 
-                        <tr>
-                            <th>Company Name</th> 
-                            <th>
-                                <a href="#" ng-click="sortType = 'Location'; sortReverse = !sortReverse">
-                                    Location
-                                    <span ng-show="sortType == 'Location' && !sortReverse" class="glyphicon glyphicon-chevron-down
-"></span>
-                                    <span ng-show="sortType == 'Location' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                                </a>
-                            </th>
-                        </tr> 
-                    </thead>
-                    <tbody> 
-                        <tr ng-repeat="x in myData | orderBy:sortType:sortReverse | filter:searchLocation"> 
-                            <td ng-cloak><a href="http://www.google.com/search?q={{x.Name}}" target="_blank">{{x.Name}}</a></td>
-                            <td>{{x.Location}}</td>
-                        </tr>
-                    </tbody>
+                        <thead> 
+                            <tr>
+                                <th>Company Name</th> 
+                                <th>
+                                    <a href="#" ng-click="sortType = 'Location'; sortReverse = !sortReverse">
+                                        Location
+                                        <span ng-show="sortType == 'Location' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                                        <span ng-show="sortType == 'Location' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                    </a>
+                                </th>
+                            </tr> 
+                        </thead>
+                        <tbody> 
+                            
+                            <tr ng-repeat="x in myData | orderBy:sortType:sortReverse | filter:searchLocation"> 
+                                <td ng-cloak><a href="http://www.google.com/search?q={{x.Name}}" target="_blank">{{x.Name}}</a></td>
+                                <td>{{x.Location}}</td>
+                            </tr>
+                            <div ng-show="loading" class="loading container">
+                                <div class="col-xs-2 col-md-offset-5" style="text-align: center;float: none; margin: 0 auto;">
+                                    <img class="img-responsive" src="img/loading.gif">LOADING...
+                                </div>
+                            </div>
+                        </tbody>
                     </table>
                 </div>
             </div>
