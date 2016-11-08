@@ -1,0 +1,83 @@
+  <!DOCTYPE html>
+<html lang="en-us" ng-app="angularApp">
+    <head>
+        <title>Introduction to AngularJS</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <style>
+            html, body
+            {
+                font-size: 1.1em;
+            }
+        </style>
+        
+        <!-- load angular via CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">AngularJS</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                </ul>
+            </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div ng-controller="mainController">
+                <!-- <label>What is your name?</label>
+                <input type="text" name="" ng-model="name">
+                <h1>Hello {{ filteredText()}}!</h1> -->
+                <form>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-search
+"></i></div>
+
+                        <input type="text" class="form-control" placeholder="Search by location" ng-model="searchLocation">
+
+                      </div>      
+                    </div>
+                </form>
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Panel heading</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                    <thead> 
+                        <tr>
+                            <th>Company Name</th> 
+                            <th>
+                                <a href="#" ng-click="sortType = 'Location'; sortReverse = !sortReverse">
+                                    Location
+                                    <span ng-show="sortType == 'Location' && !sortReverse" class="glyphicon glyphicon-chevron-down
+"></span>
+                                    <span ng-show="sortType == 'Location' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                                </a>
+                            </th>
+                        </tr> 
+                    </thead>
+                    <tbody> 
+                        <tr ng-repeat="x in myData | orderBy:sortType:sortReverse | filter:searchLocation"> 
+                            <td ng-cloak><a href="http://www.google.com/search?q={{x.Name}}" target="_blank">{{x.Name}}</a></td>
+                            <td>{{x.Location}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
